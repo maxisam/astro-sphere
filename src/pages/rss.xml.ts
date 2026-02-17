@@ -1,6 +1,8 @@
 import rss from "@astrojs/rss"
 import { getCollection } from "astro:content"
-import { SITE } from "@consts"
+import CONSTS from "@consts"
+
+const { SITE } = CONSTS
 
 type Context = {
   site: string

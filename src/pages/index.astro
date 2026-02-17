@@ -1,11 +1,14 @@
 ---
+// @ts-nocheck
 import { getCollection } from "astro:content"
 import PageLayout from "@layouts/PageLayout.astro"
-import ArrowCard from "@components/ArrowCard"
+import { ArrowCardComponent } from "@components/arrow-card.component"
 import StackCard from "@components/StackCard.astro"
-import { SITE, SOCIALS } from "@consts"
+import CONSTS from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
+
+const { SITE, SOCIALS } = CONSTS
 
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
@@ -132,7 +135,7 @@ const stack = [
           <ul class="space-y-4">
             {posts.map((post) => (
               <li>
-                <ArrowCard entry={post} />
+                <ArrowCardComponent entry={post} />
               </li>
             ))}
           </ul>
@@ -156,9 +159,9 @@ const stack = [
           </div>
           <div>
             Performing reactivity and statefulness, special guest
-            <a href="https://www.solidjs.com/" target="_blank" class="w-fit group underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
+            <a href="https://angular.io/" target="_blank" class="w-fit group underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
               <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
-                SolidJS
+                Angular
               </span>
             </a>
           </div>
@@ -181,7 +184,7 @@ const stack = [
           <ul class="space-y-4">
             {projects.map((project) => (
               <li>
-                <ArrowCard entry={project} />
+                <ArrowCardComponent entry={project} />
               </li>
             ))}
           </ul>

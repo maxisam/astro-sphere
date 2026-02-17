@@ -34,17 +34,17 @@ import MyComponent from "./MyComponent.astro"
 
 
 
-## An interactive Solid Js component
+## An interactive Angular component
 
 ```
 // Imported from components directory (src/components)
-import MyComponent from "@components/Counter"
+import { CounterComponent as Counter } from "@components/counter.component.ts"
 
 // Don't forget the astro client:load directive
 <Counter client:load /> 
 ```
 
-import Counter from "@components/Counter"
+import { CounterComponent as Counter } from "@components/counter.component.ts"
 
 <Counter client:load />
 

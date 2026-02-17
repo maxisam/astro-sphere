@@ -2,7 +2,22 @@
 
 Astro Sphere is a static, minimalist, lightweight, lightning fast portfolio and blog theme based on my personal website.
 
-It is primarily Astro, Tailwind and Typescript, with a very small amount of SolidJS for stateful components.
+It is primarily Astro, Tailwind and Typescript, with a very small amount of Angular for stateful components.
+
+## 🧱 Stack
+
+- Astro `^5.17.2`
+- `@analogjs/astro-angular` `latest`
+- Angular `latest`
+- Tailwind CSS `^3.4.1`
+- TypeScript `^5.3.3`
+- Fuse.js `^7.0.0`
+
+## 🧩 Architecture
+
+- Astro pages/layouts handle routing and static content
+- Angular standalone components are used as Astro islands for interactive UI
+- Tailwind drives styling across Astro and Angular templates
 
 ## 🚀 Deploy your own
 
@@ -73,6 +88,11 @@ Theme inspired by [Paco Coursey](https://paco.me/), [Lee Robinson](https://leero
 ## 🏛️ License
 
 MIT
+
+## 📝 Changelog
+
+- 2026-02-16: Switched stateful islands from SolidJS to Angular via `@analogjs/astro-angular`.
+- 2026-02-17: Upgraded Astro and official integrations to v5-compatible versions.
 
 
 # 1.0.1 Update

@@ -28,7 +28,7 @@ A one line summary of what each file and directory is for:
 │   └── open-graph.jpg // the default image for open-graph
 │   └── robots.txt // for web crawlers and bots to index the website
 ├── src/ // Everything that will be built for the website
-│   ├── components/ // All astro and SolidJs components
+│   ├── components/ // All astro and Angular components
 │   ├── content/ // Contains all static markdown to be compiled
 │   │   |  blog/ // Contains all blog post markdown
 │   │   |  projects/ // Contains all projects markdown

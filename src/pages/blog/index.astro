@@ -1,10 +1,13 @@
 ---
+// @ts-nocheck
 import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
-import SearchCollection from "@components/SearchCollection";
-import { BLOG } from "@consts";
+import { SearchCollectionComponent } from "@components/search-collection.component";
+import CONSTS from "@consts";
+
+const { BLOG } = CONSTS;
 
 const posts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
@@ -35,9 +38,9 @@ const estimated_initial_size =
       class="animate"
       style={{ minHeight: `${estimated_initial_size}px` }}
     >
-      <SearchCollection
+      <SearchCollectionComponent
         client:load
-        entry_name={"posts"}
+        entryName={"posts"}
         tags={tags}
         data={posts}
       />
