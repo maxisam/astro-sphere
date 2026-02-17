@@ -1,0 +1,58 @@
+name: Preview for PRs
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: pr-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        if: github.event.action != 'closed'
+        uses: actions/checkout@v5
+
+      - name: Set up Node
+        if: github.event.action != 'closed'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Enable Corepack
+        if: github.event.action != 'closed'
+        run: corepack enable
+
+      - name: Set Astro base and site
+        if: github.event.action != 'closed'
+        run: |
+          REPO="${GITHUB_REPOSITORY#*/}"
+          OWNER="${GITHUB_REPOSITORY%/*}"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          if [ "$REPO" = "$OWNER.github.io" ]; then
+            echo "ASTRO_BASE=/pr-preview/pr-$PR_NUMBER" >> "$GITHUB_ENV"
+            echo "ASTRO_SITE=https://$OWNER.github.io/pr-preview/pr-$PR_NUMBER/" >> "$GITHUB_ENV"
+          else
+            echo "ASTRO_BASE=/$REPO/pr-preview/pr-$PR_NUMBER" >> "$GITHUB_ENV"
+            echo "ASTRO_SITE=https://$OWNER.github.io/$REPO/pr-preview/pr-$PR_NUMBER/" >> "$GITHUB_ENV"
+          fi
+
+      - name: Install dependencies
+        if: github.event.action != 'closed'
+        run: yarn install --immutable
+
+      - name: Build
+        if: github.event.action != 'closed'
+        run: yarn build
+
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: dist

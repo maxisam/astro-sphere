@@ -124,8 +124,14 @@ GitHub Actions workflows are included for PR verification and GitHub Pages deplo
 Steps to enable Pages:
 
 1. In GitHub repo settings, go to **Pages**.
-2. Set **Source** to **GitHub Actions**.
-3. Push to `main` to trigger a deploy.
+2. Set **Source** to **Deploy from a branch**.
+3. Select `gh-pages` / root.
+4. Push to `main` to trigger a deploy.
+
+PR previews:
+
+- A preview is published at `https://<user>.github.io/<repo>/pr-preview/pr-<number>/` for each open PR.
+- Previews update on new commits and are cleaned up when the PR closes.
 
 ## 📝 Changelog
 
