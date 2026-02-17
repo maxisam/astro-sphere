@@ -1,0 +1,52 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set Astro base and site
+        run: |
+          REPO="${GITHUB_REPOSITORY#*/}"
+          OWNER="${GITHUB_REPOSITORY%/*}"
+          if [ "$REPO" = "$OWNER.github.io" ]; then
+            echo "ASTRO_BASE=/" >> "$GITHUB_ENV"
+            echo "ASTRO_SITE=https://$OWNER.github.io/" >> "$GITHUB_ENV"
+          else
+            echo "ASTRO_BASE=/$REPO" >> "$GITHUB_ENV"
+            echo "ASTRO_SITE=https://$OWNER.github.io/$REPO/" >> "$GITHUB_ENV"
+          fi
+
+      - name: Build and Upload
+        uses: withastro/action@v5
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

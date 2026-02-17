@@ -4,9 +4,13 @@ import sitemap from "@astrojs/sitemap"
 import tailwind from "@astrojs/tailwind"
 import angular from "@analogjs/astro-angular"
 
+const site = process.env.ASTRO_SITE ?? "https://astro-sphere-demo.vercel.app"
+const base = process.env.ASTRO_BASE ?? "/"
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://astro-sphere-demo.vercel.app",
+  site,
+  base,
   integrations: [
     mdx(),
     sitemap(),

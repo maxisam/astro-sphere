@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set Astro base and site
+        run: |
+          REPO="${GITHUB_REPOSITORY#*/}"
+          OWNER="${GITHUB_REPOSITORY%/*}"
+          if [ "$REPO" = "$OWNER.github.io" ]; then
+            echo "ASTRO_BASE=/" >> "$GITHUB_ENV"
+            echo "ASTRO_SITE=https://$OWNER.github.io/" >> "$GITHUB_ENV"
+          else
+            echo "ASTRO_BASE=/$REPO" >> "$GITHUB_ENV"
+            echo "ASTRO_SITE=https://$OWNER.github.io/$REPO/" >> "$GITHUB_ENV"
+          fi
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Build
+        run: yarn build

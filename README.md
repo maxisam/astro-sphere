@@ -117,6 +117,16 @@ Theme inspired by [Paco Coursey](https://paco.me/), [Lee Robinson](https://leero
 
 MIT
 
+## 🧪 CI/CD
+
+GitHub Actions workflows are included for PR verification and GitHub Pages deploy.
+
+Steps to enable Pages:
+
+1. In GitHub repo settings, go to **Pages**.
+2. Set **Source** to **GitHub Actions**.
+3. Push to `main` to trigger a deploy.
+
 ## 📝 Changelog
 
 - 2026-02-16: Switched stateful islands from SolidJS to Angular via `@analogjs/astro-angular`.
