@@ -132,6 +132,8 @@ PR previews:
 
 - A preview is published at `https://<user>.github.io/<repo>/pr-preview/pr-<number>/` for each open PR.
 - Previews update on new commits and are cleaned up when the PR closes.
+- Previews require **Settings → Actions → General → Workflow permissions** to be set to **Read and write**.
+- Previews do not run for PRs from forks (GitHub token permissions are read-only).
 
 ## 📝 Changelog
 
