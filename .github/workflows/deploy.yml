@@ -50,5 +50,7 @@ jobs:
         with:
           branch: gh-pages
           folder: dist
-          clean-exclude: pr-preview/
+          clean: true
+          clean-exclude: |
+            pr-preview
           force: false
