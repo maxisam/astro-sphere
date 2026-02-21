@@ -158,7 +158,6 @@ Notes:
 - 2026-02-16: Switched stateful islands from SolidJS to Angular via `@analogjs/astro-angular`.
 - 2026-02-17: Upgraded Astro and official integrations to v5-compatible versions.
 
-
 # 1.0.1 Update
 
 Added ability to run dev and preview on local network.
