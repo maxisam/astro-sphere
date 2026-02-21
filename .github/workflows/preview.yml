@@ -65,7 +65,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git fetch origin gh-pages
-          git checkout gh-pages
+          git checkout -f gh-pages
           if [ ! -f .nojekyll ]; then
             touch .nojekyll
             git add .nojekyll
