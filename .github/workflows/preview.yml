@@ -58,3 +58,17 @@ jobs:
           source-dir: dist
           preview-branch: gh-pages
           umbrella-dir: pr-preview
+
+      - name: Ensure .nojekyll at site root
+        if: github.event.action != 'closed'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages
+          git checkout gh-pages
+          if [ ! -f .nojekyll ]; then
+            touch .nojekyll
+            git add .nojekyll
+            git commit -m "chore: add .nojekyll"
+            git push origin gh-pages
+          fi

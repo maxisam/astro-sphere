@@ -5,7 +5,8 @@ import tailwind from "@astrojs/tailwind"
 import angular from "@analogjs/astro-angular"
 
 const site = process.env.ASTRO_SITE ?? "https://astro-sphere-demo.vercel.app"
-const base = process.env.ASTRO_BASE ?? "/"
+const baseInput = process.env.ASTRO_BASE ?? "/"
+const base = baseInput.endsWith("/") ? baseInput : `${baseInput}/`
 
 // https://astro.build/config
 export default defineConfig({
