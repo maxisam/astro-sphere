@@ -3210,6 +3210,7 @@ __metadata:
     sharp: "npm:^0.33.2"
     tailwind-merge: "npm:^2.2.1"
     tailwindcss: "npm:^3.4.1"
+    tinyglobby: "npm:^0.2.15"
     tslib: "npm:latest"
     typescript: "npm:^5.3.3"
     vite: "npm:^6.4.1"
