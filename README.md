@@ -135,6 +135,24 @@ PR previews:
 - Previews require **Settings → Actions → General → Workflow permissions** to be set to **Read and write**.
 - Previews do not run for PRs from forks (GitHub token permissions are read-only).
 
+## ☁️ Cloudflare Pages
+
+This repo includes a Cloudflare Pages workflow that deploys on `main` and creates preview deployments for PRs (internal PRs only).
+
+Setup:
+
+1. Create a Cloudflare Pages project.
+2. Add GitHub repo **Secrets**:
+`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`.
+3. Add GitHub repo **Variables**:
+`CLOUDFLARE_PAGES_PROJECT` (required), `CLOUDFLARE_PAGES_DOMAIN` (optional).
+
+Notes:
+
+- `CLOUDFLARE_PAGES_PROJECT` must match your Cloudflare Pages project name.
+- If `CLOUDFLARE_PAGES_DOMAIN` is not set, the workflow uses `https://<project>.pages.dev/` for `ASTRO_SITE`.
+- Cloudflare creates preview URLs for non-production branches and also provides a branch alias at `<branch>.<project>.pages.dev`.
+
 ## 📝 Changelog
 
 - 2026-02-16: Switched stateful islands from SolidJS to Angular via `@analogjs/astro-angular`.
