@@ -21,6 +21,37 @@ yarn dev
 
 3. Open `http://localhost:4321`
 
+## ✅ Local Verification (GH Pages base)
+
+Run dev server:
+
+```bash
+yarn install --immutable
+yarn dev
+```
+
+Open:
+
+```
+http://localhost:4321/
+```
+
+Verify GH Pages base paths:
+
+```bash
+# Windows PowerShell
+$env:ASTRO_BASE="/astro-sphere/pr-preview/pr-1"
+$env:ASTRO_SITE="https://maxisam.github.io/astro-sphere/pr-preview/pr-1/"
+yarn build
+yarn preview
+```
+
+Open:
+
+```
+http://localhost:4321/astro-sphere/pr-preview/pr-1/
+```
+
 ## 🔧 Requirements
 
 - Node.js 20+ recommended
@@ -119,7 +150,7 @@ MIT
 
 ## 🧪 CI/CD
 
-GitHub Actions workflows are included for PR verification and GitHub Pages deploy.
+GitHub Actions workflows are included for PR verification, PR previews, and deploys.
 
 Steps to enable Pages:
 
@@ -127,6 +158,12 @@ Steps to enable Pages:
 2. Set **Source** to **Deploy from a branch**.
 3. Select `gh-pages` / root.
 4. Push to `main` to trigger a deploy.
+
+Deploy flow (push to `main`):
+
+- A single **Deploy** workflow runs.
+- Cloudflare Pages deploy is gated by the `cloudflare` environment (set required reviewers to enable the gate).
+- GitHub Pages deploy runs only after Cloudflare deploy succeeds.
 
 PR previews:
 
@@ -137,7 +174,7 @@ PR previews:
 
 ## ☁️ Cloudflare Pages
 
-This repo includes a Cloudflare Pages workflow that deploys on `main` and creates preview deployments for PRs (internal PRs only).
+Cloudflare deploys are handled by the unified **Deploy** workflow on pushes to `main`.
 
 Setup:
 
@@ -151,7 +188,7 @@ Notes:
 
 - `CLOUDFLARE_PAGES_PROJECT` must match your Cloudflare Pages project name.
 - If `CLOUDFLARE_PAGES_DOMAIN` is not set, the workflow uses `https://<project>.pages.dev/` for `ASTRO_SITE`.
-- Cloudflare creates preview URLs for non-production branches and also provides a branch alias at `<branch>.<project>.pages.dev`.
+- Create a GitHub **Environment** named `cloudflare` and set required reviewers to enforce the deployment gate.
 
 ## 📝 Changelog
 
