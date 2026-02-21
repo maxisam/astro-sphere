@@ -161,9 +161,9 @@ Steps to enable Pages:
 
 Deploy flow (push to `main`):
 
-- A single **Deploy** workflow runs.
-- Cloudflare Pages deploy is gated by the `cloudflare` environment (set required reviewers to enable the gate).
-- GitHub Pages deploy runs only after Cloudflare deploy succeeds.
+- **Deploy to Cloudflare Pages** workflow runs, gated by the `cloudflare` environment.
+- **Deploy to GitHub Pages** workflow runs independently.
+- Releases are created **only** by the Cloudflare workflow after a successful deploy.
 
 PR previews:
 
@@ -174,7 +174,7 @@ PR previews:
 
 ## ☁️ Cloudflare Pages
 
-Cloudflare deploys are handled by the unified **Deploy** workflow on pushes to `main`.
+Cloudflare deploys are handled by **Deploy to Cloudflare Pages** on pushes to `main`.
 
 Setup:
 
@@ -189,6 +189,7 @@ Notes:
 - `CLOUDFLARE_PAGES_PROJECT` must match your Cloudflare Pages project name.
 - If `CLOUDFLARE_PAGES_DOMAIN` is not set, the workflow uses `https://<project>.pages.dev/` for `ASTRO_SITE`.
 - Create a GitHub **Environment** named `cloudflare` and set required reviewers to enforce the deployment gate.
+- Releases use tags in the format `vYYYY.MM.DD.<run_number>` and include auto‑generated release notes.
 
 ## 📝 Changelog
 
