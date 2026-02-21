@@ -32,7 +32,7 @@ import { cn } from "@lib/utils";
                 class="absolute flex justify-center items-center h-full w-10 right-0 top-0 stroke-neutral-400 dark:stroke-neutral-500 hover:stroke-neutral-600 hover:dark:stroke-neutral-300"
               >
                 <svg class="size-5">
-                  <use [attr.href]="'/ui.svg#x'" />
+                  <use [attr.href]="baseUrl + 'ui.svg#x'" />
                 </svg>
               </button>
             }
@@ -59,10 +59,10 @@ import { cn } from "@lib/utils";
                     )"
                   >
                     @if (!filter().has(tag)) {
-                      <use [attr.href]="'/ui.svg#square'" />
+                      <use [attr.href]="baseUrl + 'ui.svg#square'" />
                     }
                     @if (filter().has(tag)) {
-                      <use [attr.href]="'/ui.svg#square-check'" />
+                      <use [attr.href]="baseUrl + 'ui.svg#square-check'" />
                     }
                   </svg>
 
@@ -92,10 +92,10 @@ import { cn } from "@lib/utils";
               </div>
               <svg class="size-5 left-2 top-[0.45rem]">
                 @if (descending()) {
-                  <use [attr.href]="'/ui.svg#sort-descending'" />
+                  <use [attr.href]="baseUrl + 'ui.svg#sort-descending'" />
                 }
                 @if (!descending()) {
-                  <use [attr.href]="'/ui.svg#sort-ascending'" />
+                  <use [attr.href]="baseUrl + 'ui.svg#sort-ascending'" />
                 }
               </svg>
             </button>
@@ -113,6 +113,7 @@ import { cn } from "@lib/utils";
   `,
 })
 export class SearchCollectionComponent implements AfterViewInit {
+  baseUrl = import.meta.env.BASE_URL ?? "/";
   entryName = input("");
   tags = input<string[]>([]);
   data = input<ContentEntry[]>([]);

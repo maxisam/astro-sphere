@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, input, output } from "@angular/core
       <svg
         class="absolute size-6 left-2 top-[0.45rem] stroke-neutral-400 dark:stroke-neutral-500 pointer-events-none"
       >
-        <use [attr.href]="'/ui.svg#search'" />
+        <use [attr.href]="baseUrl + 'ui.svg#search'" />
       </svg>
       <input
         name="search"
@@ -26,7 +26,7 @@ import { ChangeDetectionStrategy, Component, input, output } from "@angular/core
           class="absolute flex justify-center items-center h-full w-10 right-0 top-0 stroke-neutral-400 dark:stroke-neutral-500 hover:stroke-neutral-600 hover:dark:stroke-neutral-300"
         >
           <svg class="size-5">
-            <use [attr.href]="'/ui.svg#x'" />
+            <use [attr.href]="baseUrl + 'ui.svg#x'" />
           </svg>
         </button>
       }
@@ -34,6 +34,7 @@ import { ChangeDetectionStrategy, Component, input, output } from "@angular/core
   `,
 })
 export class SearchBarComponent {
+  baseUrl = import.meta.env.BASE_URL ?? "/";
   query = input.required<string>();
   placeholderText = input.required<string>();
   queryChange = output<string>();

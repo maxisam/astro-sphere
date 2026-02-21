@@ -69,6 +69,7 @@ import { formatDate, truncateText } from "@lib/utils";
   `,
 })
 export class ArrowCardComponent {
+  private baseUrl = import.meta.env.BASE_URL ?? "/";
   entry = input<ContentEntry | null>(null);
   pill = input(false);
 
@@ -77,6 +78,6 @@ export class ArrowCardComponent {
 
   href = computed(() => {
     const current = this.entry();
-    return current ? `/${current.collection}/${current.slug}` : "";
+    return current ? `${this.baseUrl}${current.collection}/${current.slug}` : "";
   });
 }
