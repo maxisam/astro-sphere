@@ -1,5 +1,25 @@
 {
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
-  }
+  },
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#f2cae1",
+    "activityBar.background": "#f2cae1",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#689a26",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#15202b99",
+    "sash.hoverBorder": "#f2cae1",
+    "statusBar.background": "#e8a1c9",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#de78b1",
+    "statusBarItem.remoteBackground": "#e8a1c9",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#e8a1c9",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#e8a1c999",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.color": "#e8a1c9"
 }
