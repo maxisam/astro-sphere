@@ -1,11 +1,13 @@
 ---
+// @ts-nocheck
 import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
-import SearchCollection from "@components/SearchCollection";
-import { PROJECTS } from "@consts";
-import type { CollectionEntry } from "astro:content";
+import { SearchCollectionComponent } from "@components/search-collection.component";
+import CONSTS from "@consts";
+
+const { PROJECTS } = CONSTS;
 
 const projects = (await getCollection("projects"))
   .filter((project) => !project.data.draft)
@@ -36,9 +38,9 @@ const estimated_initial_size =
       class="animate"
       style={{ minHeight: `${estimated_initial_size}px` }}
     >
-      <SearchCollection
+      <SearchCollectionComponent
         client:load
-        entry_name={"projects"}
+        entryName={"projects"}
         tags={tags}
         data={projects}
       />

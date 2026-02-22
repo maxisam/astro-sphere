@@ -4,7 +4,9 @@ import PageLayout from "@layouts/PageLayout.astro"
 import TopLayout from "@layouts/TopLayout.astro"
 import BottomLayout from "@layouts/BottomLayout.astro"
 import { formatDate } from "@lib/utils"
-import { SITE } from "@consts"
+import CONSTS from "@consts"
+
+const { SITE } = CONSTS
 
 // Create the static pages for legal docs
 export async function getStaticPaths() {

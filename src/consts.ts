@@ -79,3 +79,15 @@ export const SOCIALS: Socials = [
   },
 ]
 
+const CONSTS = {
+  SITE,
+  WORK,
+  BLOG,
+  PROJECTS,
+  SEARCH,
+  LINKS,
+  SOCIALS,
+}
+
+export default CONSTS
+

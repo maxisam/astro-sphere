@@ -14,20 +14,37 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.6",
-    "@astrojs/mdx": "^2.1.1",
-    "@astrojs/rss": "^4.0.5",
-    "@astrojs/sitemap": "^3.1.1",
-    "@astrojs/solid-js": "^4.0.1",
-    "@astrojs/tailwind": "^5.1.0",
+    "@analogjs/astro-angular": "latest",
+    "@angular/animations": "latest",
+    "@angular/build": "latest",
+    "@angular/common": "latest",
+    "@angular/compiler": "latest",
+    "@angular/compiler-cli": "latest",
+    "@angular/core": "latest",
+    "@angular/language-service": "latest",
+    "@angular/platform-browser": "latest",
+    "@angular/platform-browser-dynamic": "latest",
+    "@angular/platform-server": "latest",
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/tailwind": "^6.0.2",
     "@tailwindcss/typography": "^0.5.10",
-    "astro": "^4.4.13",
+    "astro": "^5.17.2",
     "clsx": "^2.1.0",
     "fuse.js": "^7.0.0",
+    "rxjs": "latest",
     "sharp": "^0.33.2",
-    "solid-js": "^1.8.15",
     "tailwind-merge": "^2.2.1",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
-  }
+    "tslib": "latest",
+    "typescript": "^5.3.3",
+    "zone.js": "latest"
+  },
+  "devDependencies": {
+    "tinyglobby": "^0.2.15",
+    "vite": "^6.4.1"
+  },
+  "packageManager": "yarn@4.12.0+sha512.f45ab632439a67f8bc759bf32ead036a1f413287b9042726b7cc4818b7b49e14e9423ba49b18f9e06ea4941c1ad062385b1d8760a8d5091a1a31e5f6219afca8"
 }

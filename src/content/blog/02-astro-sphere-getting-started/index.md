@@ -19,7 +19,7 @@ configuring the site and make it personal.
 
 export default defineConfig({
   site: "https://astro-sphere.vercel.app", // your domain here
-  integrations: [mdx(), sitemap(), solidJs(), tailwind({ applyBaseStyles: false })],
+  integrations: [mdx(), sitemap(), angular(), tailwind({ applyBaseStyles: false })],
 })
 ```
 

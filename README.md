@@ -2,7 +2,75 @@
 
 Astro Sphere is a static, minimalist, lightweight, lightning fast portfolio and blog theme based on my personal website.
 
-It is primarily Astro, Tailwind and Typescript, with a very small amount of SolidJS for stateful components.
+It is primarily Astro, Tailwind and Typescript, with a very small amount of Angular for stateful components.
+
+## ✅ Quickstart
+
+1. Install dependencies:
+
+```bash
+corepack enable
+yarn install
+```
+
+2. Start the dev server:
+
+```bash
+yarn dev
+```
+
+3. Open `http://localhost:4321`
+
+## ✅ Local Verification (GH Pages base)
+
+Run dev server:
+
+```bash
+yarn install --immutable
+yarn dev
+```
+
+Open:
+
+```
+http://localhost:4321/
+```
+
+Verify GH Pages base paths:
+
+```bash
+# Windows PowerShell
+$env:ASTRO_BASE="/astro-sphere/pr-preview/pr-1"
+$env:ASTRO_SITE="https://maxisam.github.io/astro-sphere/pr-preview/pr-1/"
+yarn build
+yarn preview
+```
+
+Open:
+
+```
+http://localhost:4321/astro-sphere/pr-preview/pr-1/
+```
+
+## 🔧 Requirements
+
+- Node.js 20+ recommended
+- Yarn 4 (via Corepack)
+
+## 🧱 Stack
+
+- Astro `^5.17.2`
+- `@analogjs/astro-angular` `latest`
+- Angular `latest`
+- Tailwind CSS `^3.4.1`
+- TypeScript `^5.3.3`
+- Fuse.js `^7.0.0`
+
+## 🧩 Architecture
+
+- Astro pages/layouts handle routing and static content
+- Angular standalone components are used as Astro islands for interactive UI
+- Tailwind drives styling across Astro and Angular templates
 
 ## 🚀 Deploy your own
 
@@ -39,25 +107,31 @@ Rendered in ~40ms on localhost
 
 The blog posts on the demo serve as the documentation and configuration.
 
+## 🧭 Project Structure
+
+- `src/pages` routes and page templates
+- `src/components` shared UI and Angular island components
+- `src/content` blog posts and projects (Markdown/MDX)
+- `public` static assets
+
 ## 💻 Commands
 
 All commands are run from the root of the project, from a terminal:
 
-Replace npm with your package manager of choice. `npm`, `pnpm`, `yarn`, `bun`, etc
+Replace `yarn` with your package manager of choice if needed.
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run dev:network`     | Starts dev server on local network               |
-| `npm run sync`            | Generates TypeScript types for all Astro modules.|
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run preview:network` | Starts preview server on local network           |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-| `npm run lint`            | Run ESLint                                       |
-| `npm run lint:fix`        | Auto-fix ESLint issues                           |
+| `yarn install`            | Installs dependencies                            |
+| `yarn dev`                | Starts local dev server at `localhost:4321`      |
+| `yarn dev:network`        | Starts dev server on local network               |
+| `yarn build`              | Build your production site to `./dist/`          |
+| `yarn preview`            | Preview your build locally, before deploying     |
+| `yarn preview:network`    | Starts preview server on local network           |
+| `yarn astro ...`          | Run CLI commands like `astro add`, `astro check` |
+| `yarn astro -- --help`    | Get help using the Astro CLI                     |
+| `yarn lint`               | Run ESLint                                       |
+| `yarn lint:fix`           | Auto-fix ESLint issues                           |
 
 ## 🗺️ Roadmap
 
@@ -74,6 +148,53 @@ Theme inspired by [Paco Coursey](https://paco.me/), [Lee Robinson](https://leero
 
 MIT
 
+## 🧪 CI/CD
+
+GitHub Actions workflows are included for PR verification, PR previews, and deploys.
+
+Steps to enable Pages:
+
+1. In GitHub repo settings, go to **Pages**.
+2. Set **Source** to **Deploy from a branch**.
+3. Select `gh-pages` / root.
+4. Push to `main` to trigger a deploy.
+
+Deploy flow (push to `main`):
+
+- **Deploy to Cloudflare Pages** workflow runs, gated by the `cloudflare` environment.
+- **Deploy to GitHub Pages** workflow runs independently.
+- Releases are created **only** by the Cloudflare workflow after a successful deploy.
+
+PR previews:
+
+- A preview is published at `https://<user>.github.io/<repo>/pr-preview/pr-<number>/` for each open PR.
+- Previews update on new commits and are cleaned up when the PR closes.
+- Previews require **Settings → Actions → General → Workflow permissions** to be set to **Read and write**.
+- Previews do not run for PRs from forks (GitHub token permissions are read-only).
+
+## ☁️ Cloudflare Pages
+
+Cloudflare deploys are handled by **Deploy to Cloudflare Pages** on pushes to `main`.
+
+Setup:
+
+1. Create a Cloudflare Pages project.
+2. Add GitHub repo **Secrets**:
+`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`.
+3. Add GitHub repo **Variables**:
+`CLOUDFLARE_PAGES_PROJECT` (required), `CLOUDFLARE_PAGES_DOMAIN` (optional).
+
+Notes:
+
+- `CLOUDFLARE_PAGES_PROJECT` must match your Cloudflare Pages project name.
+- If `CLOUDFLARE_PAGES_DOMAIN` is not set, the workflow uses `https://<project>.pages.dev/` for `ASTRO_SITE`.
+- Create a GitHub **Environment** named `cloudflare` and set required reviewers to enforce the deployment gate.
+- Releases use tags in the format `vYYYY.MM.DD.<run_number>` and include auto‑generated release notes.
+
+## 📝 Changelog
+
+- 2026-02-16: Switched stateful islands from SolidJS to Angular via `@analogjs/astro-angular`.
+- 2026-02-17: Upgraded Astro and official integrations to v5-compatible versions.
 
 # 1.0.1 Update
 
